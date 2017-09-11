@@ -77,11 +77,11 @@ parse_cmdline(context_t * ctx, int argc, char **argv)
 {
     int c;
 
-    if (argc < 2)
-    {
-        print_usage();
-        exit(EXIT_SUCCESS);
-    }
+    //if (argc < 2)
+    //{
+    //    print_usage();
+    //    exit(EXIT_SUCCESS);
+    //}
 
     while ((c = getopt(argc, argv, "d:s:f:r:n:cvh")) != -1)
     {
@@ -161,7 +161,7 @@ set_defaults(context_t * ctx)
     ctx->g_buff = NULL;
     ctx->renderer = NULL;
     ctx->got_error = false;
-    ctx->fps = 30;
+    ctx->fps = 1;//30;
 
     ctx->conv_output_plane_buf_queue = new queue < nv_buffer * >;
     pthread_mutex_init(&ctx->queue_lock, NULL);

@@ -42,7 +42,7 @@ ARGUS_UTILS_DIR := $(TOP_DIR)/argus/samples/utils
 
 OBJS := $(SRCS:.cpp=.o)
 
-CPPFLAGS += \
+CPPFLAGS += -g \
 	-I"$(ALGO_CUDA_DIR)" \
 	-I"$(ARGUS_UTILS_DIR)"
 
@@ -54,8 +54,8 @@ CPPFLAGS+=`pkg-config --cflags opencv`
 LDFLAGS+=`pkg-config --libs opencv`
 CUDA_DIR:=/usr/local/cuda
 CAFFE_DIR:=/home/ubuntu/Work/caffe/caffe-master
-CPPFLAGS+=-I$(CAFFE_DIR)/include -I$(CUDA_DIR)/include -I$(CAFFE_DIR)/build/src
-LDFLAGS+=-L$(CAFFE_DIR)/build/lib -lcaffe
+CPPFLAGS+=-I$(CAFFE_DIR)/include -I$(CUDA_DIR)/include -I$(CAFFE_DIR)/build/src 
+LDFLAGS+=-L$(CAFFE_DIR)/.build_release/lib -lglog -lboost_system -lcaffe
 
 OBJS += \
 	$(ALGO_CUDA_DIR)/NvAnalysis.o \
