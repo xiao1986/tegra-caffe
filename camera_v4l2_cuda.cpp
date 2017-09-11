@@ -153,7 +153,7 @@ set_defaults(context_t * ctx)
     ctx->save_n_frame = 0;
 
     ctx->conv = NULL;
-    ctx->vic_pixfmt = V4L2_PIX_FMT_YUV420M;
+    ctx->vic_pixfmt = V4L2_PIX_FMT_ABGR32;//V4L2_PIX_FMT_YUV420M;
     ctx->vic_flip = (enum v4l2_flip_method) -1;
     ctx->vic_interpolation = (enum v4l2_interpolation_method) -1;
     ctx->vic_tnr = (enum v4l2_tnr_algorithm) -1;
@@ -161,7 +161,7 @@ set_defaults(context_t * ctx)
     ctx->g_buff = NULL;
     ctx->renderer = NULL;
     ctx->got_error = false;
-    ctx->fps = 1;//30;
+    ctx->fps = 30;
 
     ctx->conv_output_plane_buf_queue = new queue < nv_buffer * >;
     pthread_mutex_init(&ctx->queue_lock, NULL);
@@ -650,8 +650,8 @@ conv_capture_dqbuf_thread_callback(struct v4l2_buffer *v4l2_buf,
 	writeFrameToOpencvConsumer(ctx, buffer);
 
     // Render the frame into display
-    if (v4l2_buf->m.planes[0].bytesused)
-        ctx->renderer->render(buffer->planes[0].fd);
+    //if (v4l2_buf->m.planes[0].bytesused)
+    //    ctx->renderer->render(buffer->planes[0].fd);
 
     if (ctx->conv->capture_plane.qBuffer(*v4l2_buf, buffer) < 0)
     {

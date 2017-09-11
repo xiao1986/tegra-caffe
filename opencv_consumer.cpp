@@ -234,12 +234,14 @@ opencv_img_processing(void *opencv_handler, uint8_t *pdata, int32_t width, int32
     cv::Mat imgbuf = cv::Mat(height, width, CV_8UC4, pdata);
     cv::Mat display_img;
 
+
+
     if (handler->detector_busy == 0) {
         //handler->detecting_mat = imgbuf.clone();
         imgbuf.copyTo(handler->detecting_mat);
         handler->detector_busy = 1;
     }
-    cvtColor(imgbuf, display_img, CV_RGBA2BGRA);
+    cvtColor(imgbuf, display_img, CV_RGBA2BGRA);//   
     if (handler->result_update_flag)
     {
         ostringstream ss;
@@ -255,6 +257,7 @@ opencv_img_processing(void *opencv_handler, uint8_t *pdata, int32_t width, int32
         matPrint(display_img, 2, CV_RGB(255,0,0), ss.str());
     }
     cv::imshow("img", display_img);
+
     waitKey(1);
     return;
 }
