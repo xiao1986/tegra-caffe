@@ -90,4 +90,4 @@ the camera stream.
        $ export LD_LIBRARY_PATH=$HOME/Work/caffe/caffe-master/build/lib:/usr/local/cuda/lib64
        $ ./camera_v4l2_cuda -d /dev/video0 -s 640x480 -f YUYV -n 30
 @}
-
+![image](https://github.com/xiao1986/tegra-caffe/blob/master/tegra-caffe.gif)
